@@ -7,7 +7,7 @@ An interactive revision quiz for the chemistry final exam (QV), built for the
 feedback on every answer, and a short explanation video whenever an answer is
 wrong.
 
-**Live version:** https://USERNAME.github.io/chem-quiz/ ← replace once it is online
+**Live version:** https://daniel-bzra.github.io/chem-quiz/
 
 ---
 
@@ -103,13 +103,13 @@ git init -b main && git add -A && git commit -m "ChemRevise: interactive chemist
 Create an empty repository on github.com (no README, no .gitignore), then:
 
 ```bash
-git remote add origin https://github.com/USERNAME/chem-quiz.git && git push -u origin main
+git remote add origin https://github.com/daniel-bzra/chem-quiz.git && git push -u origin main
 ```
 
 Then on GitHub: **Settings → Pages → Source: Deploy from a branch →
 Branch: `main` / `(root)` → Save.**
 
-After a minute the site is live at `https://USERNAME.github.io/chem-quiz/`.
+After a minute the site is live at `https://daniel-bzra.github.io/chem-quiz/`.
 That URL is what gets sent to Mr Pröbsting, Mr Fannenböck and Ms Marti.
 
 Every later `git push` updates the live site automatically.
