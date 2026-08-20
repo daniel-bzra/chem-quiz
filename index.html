@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ChemRevise &ndash; Interactive Chemistry Revision Quiz</title>
+<meta name="description" content="An interactive revision quiz for the chemistry final exam. 18 questions, instant feedback and a short explanation video whenever an answer is wrong.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%AA%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="./">
+    <span class="brand-mark" aria-hidden="true">&#9883;</span>
+    <span class="brand-text">Chem<strong>Revise</strong></span>
+  </a>
+  <nav class="header-nav">
+    <span id="hud" class="hud" hidden>
+      <span class="hud-item" id="hudProgress">1 / 18</span>
+      <span class="hud-item hud-score" id="hudScore">0 correct</span>
+    </span>
+    <button class="btn-ghost" id="btnSources" type="button">Sources</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ================================================== START ==== -->
+  <section id="screen-start" class="screen is-active">
+    <div class="hero">
+      <p class="eyebrow">Chemistry &middot; final exam revision</p>
+      <h1>Test what you understand,<br>not what you memorised.</h1>
+      <p class="lead">
+        Eighteen exam-style questions across the whole course. You get feedback after every
+        single answer &ndash; and whenever you get one wrong, a short video explains
+        <em>why</em> before you move on.
+      </p>
+
+      <div class="start-actions">
+        <button class="btn-primary" id="btnStartAll" type="button">Start the full quiz &rarr;</button>
+        <span class="start-meta"><span id="startCount">18</span> questions &middot; about 15 minutes</span>
+      </div>
+
+      <p class="or-line">or revise a single chapter</p>
+      <div class="topic-grid" id="topicGrid"><!-- built by app.js --></div>
+    </div>
+
+    <ul class="how">
+      <li><span class="how-num">1</span><p><strong>Answer.</strong> Four options, one is right. Take your time &ndash; there is no clock.</p></li>
+      <li><span class="how-num">2</span><p><strong>Understand.</strong> Every option gets its own explanation, so you also learn why the others fail.</p></li>
+      <li><span class="how-num">3</span><p><strong>Watch.</strong> A wrong answer opens a 30&ndash;45&nbsp;second video. Continue as soon as you are ready.</p></li>
+      <li><span class="how-num">4</span><p><strong>Review.</strong> At the end you get your score, a topic breakdown and a retry of the questions you missed.</p></li>
+    </ul>
+  </section>
+
+  <!-- =================================================== QUIZ ==== -->
+  <section id="screen-quiz" class="screen">
+    <div class="progress-track" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+
+    <article class="card">
+      <div class="card-head">
+        <span class="chip" id="qTopic">C1</span>
+        <span class="q-counter" id="qCounter">Question 1 of 18</span>
+      </div>
+
+      <h2 class="q-text" id="qText"></h2>
+
+      <ul class="options" id="options" role="list"></ul>
+
+      <p class="hint" id="hint">Tip: you can also press <kbd>1</kbd>&ndash;<kbd>4</kbd> to answer.</p>
+
+      <!-- feedback -->
+      <div class="feedback" id="feedback" hidden>
+        <div class="fb-head">
+          <span class="fb-icon" id="fbIcon"></span>
+          <h3 id="fbTitle"></h3>
+        </div>
+        <p class="fb-why" id="fbWhy"></p>
+        <p class="fb-correct" id="fbCorrect" hidden></p>
+        <p class="fb-takeaway" id="fbTakeaway"></p>
+
+        <!-- video, only for wrong answers -->
+        <div class="video-block" id="videoBlock" hidden>
+          <h4><span aria-hidden="true">&#9654;</span> Watch the explanation</h4>
+          <div class="video-frame" id="videoFrame"></div>
+          <p class="video-note">Take the 40 seconds &ndash; this is the part that makes it stick.</p>
+        </div>
+
+        <p class="fb-source" id="fbSource"></p>
+
+        <div class="fb-actions">
+          <button class="btn-primary" id="btnNext" type="button">Continue &rarr;</button>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================================================= RESULT ==== -->
+  <section id="screen-result" class="screen">
+    <article class="card result-card">
+      <div class="score-ring" id="scoreRing">
+        <span class="score-value" id="scoreValue">0</span>
+        <span class="score-of" id="scoreOf">of 18</span>
+      </div>
+
+      <h2 id="resultTitle">Well done!</h2>
+      <p class="result-msg" id="resultMsg"></p>
+
+      <h3 class="section-title">Your topics</h3>
+      <div class="breakdown" id="breakdown"></div>
+
+      <div class="review" id="reviewWrap" hidden>
+        <h3 class="section-title">Worth another look</h3>
+        <ul class="review-list" id="reviewList"></ul>
+      </div>
+
+      <div class="result-actions">
+        <button class="btn-primary" id="btnRetryWrong" type="button" hidden>Retry the ones I missed</button>
+        <button class="btn-secondary" id="btnRestart" type="button">Start again</button>
+      </div>
+
+      <p class="best-note" id="bestNote" hidden></p>
+    </article>
+  </section>
+
+</main>
+
+<!-- ================================================== SOURCES ==== -->
+<dialog id="sourcesDialog">
+  <h2>Sources &amp; material used</h2>
+
+  <h3>Subject content</h3>
+  <ul>
+    <li><strong>Chemie-Skript <em>CHEM IMST24a</em>, BWZ Rapperswil</strong> &ndash; chapters C1&ndash;C9
+        (Stoffe, Aufbau der Materie, Chemische Bindungen, Die Stoffmenge, Chemische Reaktionen,
+        Zwischenmolekulare Kr&auml;fte, S&auml;ure-Base-Reaktionen, Redox-Reaktionen, Organische Chemie).
+        Every question is tagged with the chapter it comes from.</li>
+    <li><strong>Periodensystem der Elemente</strong> (BWZ classroom edition) &ndash; molar masses and group positions.</li>
+    <li><strong>Boiling-point and exam-task data</strong> taken from the practice exams C5/C6 and the
+        glossary in the same course script.</li>
+    <li>Constants used throughout: V<sub>m</sub> = 22.4 L/mol at standard conditions (0&nbsp;&deg;C, 1013&nbsp;hPa),
+        N<sub>A</sub> = 6.02 &middot; 10<sup>23</sup> mol<sup>&minus;1</sup>.</li>
+  </ul>
+
+  <h3>Videos</h3>
+  <ul id="videoSourceList">
+    <li>All explanation videos were written, recorded and edited by us.</li>
+    <li class="todo">Add here: any music, stock footage or images you used, with the licence.</li>
+  </ul>
+
+  <h3>Software</h3>
+  <ul>
+    <li>Hand-written HTML, CSS and JavaScript &ndash; no frameworks, no tracking, no cookies.</li>
+    <li>Typefaces: <em>Outfit</em> and <em>Inter</em> via Google Fonts (SIL Open Font License).</li>
+    <li>Hosted with GitHub Pages.</li>
+  </ul>
+
+  <p class="dialog-foot">
+    <span id="authorLine">IDAF Natural Sciences &amp; English &ndash; BWZ Rapperswil</span>
+  </p>
+  <button class="btn-secondary" id="btnCloseSources" type="button">Close</button>
+</dialog>
+
+<footer class="site-footer">
+  <p>Made for the IDAF NAT&ndash;ENG project &middot; <button class="linklike" id="btnSources2" type="button">Sources</button></p>
+</footer>
+
+<script src="js/questions.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
