@@ -23,6 +23,10 @@
       <span class="hud-item" id="hudProgress">1 / 18</span>
       <span class="hud-item hud-score" id="hudScore">0 correct</span>
     </span>
+    <button class="btn-ghost btn-pse" id="btnPse" type="button" title="Periodic table (P)">
+      <span class="pse-full">Periodic table</span>
+      <span class="pse-short">PSE</span>
+    </button>
     <button class="btn-ghost" id="btnSources" type="button">Sources</button>
   </nav>
 </header>
@@ -129,6 +133,41 @@
 
 </main>
 
+<!-- =========================================== PERIODIC TABLE ==== -->
+<dialog id="pseDialog" class="pse-dialog">
+  <div class="pse-head">
+    <div>
+      <h2>Periodic table</h2>
+      <p class="pse-sub">Click an element for its full name and molar mass.</p>
+    </div>
+    <button class="btn-ghost" id="btnClosePse" type="button">Close</button>
+  </div>
+
+  <div class="pse-readout" id="pseReadout" aria-live="polite">
+    <span class="pr-z" id="prZ">&mdash;</span>
+    <span class="pr-sym" id="prSym">&mdash;</span>
+    <span class="pr-name" id="prName">Select an element</span>
+    <span class="pr-mass" id="prMass"></span>
+  </div>
+
+  <div class="pse-scroll">
+    <div class="pse-grid" id="pseGrid"><!-- built by app.js --></div>
+  </div>
+
+  <div class="pse-legend" id="pseLegend"><!-- built by app.js --></div>
+
+  <div class="pse-constants">
+    <h3>Constants you may need</h3>
+    <ul>
+      <li><b>V<sub>m</sub></b> = 22.4 L/mol &mdash; molar volume of any gas at 0&nbsp;&deg;C and 1013&nbsp;hPa</li>
+      <li><b>N<sub>A</sub></b> = 6.02 &middot; 10<sup>23</sup> mol<sup>&minus;1</sup> &mdash; particles per mole</li>
+      <li><b>n</b> = m / M &nbsp;&middot;&nbsp; <b>n</b> = V / V<sub>m</sub> &nbsp;&middot;&nbsp; <b>c</b> = n / V</li>
+      <li><b>pH</b> = &minus;log c(H<sub>3</sub>O<sup>+</sup>) &mdash; one pH unit is a factor of 10</li>
+    </ul>
+    <p class="pse-note">Masses are the IUPAC standard atomic weights. A value in brackets is the mass number of the most stable isotope.</p>
+  </div>
+</dialog>
+
 <!-- ================================================== SOURCES ==== -->
 <dialog id="sourcesDialog">
   <h2>Sources &amp; material used</h2>
@@ -139,7 +178,10 @@
         (Stoffe, Aufbau der Materie, Chemische Bindungen, Die Stoffmenge, Chemische Reaktionen,
         Zwischenmolekulare Kr&auml;fte, S&auml;ure-Base-Reaktionen, Redox-Reaktionen, Organische Chemie).
         Every question is tagged with the chapter it comes from.</li>
-    <li><strong>Periodensystem der Elemente</strong> (BWZ classroom edition) &ndash; molar masses and group positions.</li>
+    <li><strong>Periodensystem der Elemente</strong> (BWZ classroom edition) &ndash; group positions.
+        The molar masses in the built-in periodic table are the IUPAC standard atomic weights
+        (Commission on Isotopic Abundances and Atomic Weights, 2021 table), rounded to the
+        precision used in class.</li>
     <li><strong>Boiling-point and exam-task data</strong> taken from the practice exams C5/C6 and the
         glossary in the same course script.</li>
     <li>Constants used throughout: V<sub>m</sub> = 22.4 L/mol at standard conditions (0&nbsp;&deg;C, 1013&nbsp;hPa),
@@ -169,6 +211,7 @@
   <p>Made for the IDAF NAT&ndash;ENG project &middot; <button class="linklike" id="btnSources2" type="button">Sources</button></p>
 </footer>
 
+<script src="js/elements.js"></script>
 <script src="js/questions.js"></script>
 <script src="js/app.js"></script>
 </body>

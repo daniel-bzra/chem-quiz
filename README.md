@@ -16,8 +16,9 @@ wrong.
 | Requirement | Where |
 |---|---|
 | in English | whole app |
-| tests understanding | questions are applied/reasoning, not definition recall |
+| tests understanding | questions are applied/reasoning, not definition recall; options are shuffled and length-balanced so neither position nor length gives the answer away |
 | wide range of topics | 2 questions per chapter, C1–C9 |
+| usable for revision | built-in periodic table (118 elements + constants), openable at any time with the **P** key |
 | at least 6 questions | 18 |
 | immediate feedback after each answer | feedback panel opens on click, with a note on **every** option |
 | explanation video on a wrong answer | `videos/qNN.mp4`, 18 × ~40 s ≈ 12 min |
@@ -34,6 +35,7 @@ chem-quiz/
 ├── index.html          the three screens (start / quiz / result)
 ├── css/style.css       all styling
 ├── js/questions.js     ← the question bank, this is what you edit
+├── js/elements.js      periodic table data (118 elements)
 ├── js/app.js           quiz logic
 ├── videos/             q01.mp4 … q18.mp4  (add these)
 ├── VIDEO-SCRIPTS.md    a draft script for each of the 18 videos

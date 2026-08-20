@@ -35,10 +35,10 @@ const QUIZ_QUESTIONS = [
     topic: "C1",
     question: "A beaker contains sand, table salt and water. Which procedure separates all three components from each other?",
     options: [
-      "Filter the mixture, then let the water evaporate from the filtrate.",
-      "Let the water evaporate first, then filter the dry solid.",
-      "Distil the mixture once and collect the distillate.",
-      "Pull the sand out with a magnet, then filter off the salt."
+      "Filter the mixture, then evaporate the water from the filtrate.",
+      "Let the water evaporate first, then filter off the dry solid.",
+      "Distil the mixture once and collect only the clear distillate.",
+      "Pull out the sand with a magnet, then filter off the salt."
     ],
     correct: 0,
     why: [
@@ -56,10 +56,10 @@ const QUIZ_QUESTIONS = [
     topic: "C1",
     question: "Which observation is the strongest evidence that a clear, colourless liquid is a pure substance and not a mixture?",
     options: [
-      "You can see straight through it.",
-      "Its temperature stays constant during the whole boiling process.",
-      "Its density is exactly 1.00 g/cm&sup3;.",
-      "It leaves no residue on filter paper."
+      "You can see straight through it without any cloudiness.",
+      "It boils at one constant temperature from start to finish.",
+      "Its density is exactly 1.00 g/cm&sup3; at room temperature.",
+      "It passes through filter paper without leaving a residue."
     ],
     correct: 1,
     why: [
@@ -79,14 +79,14 @@ const QUIZ_QUESTIONS = [
     topic: "C2",
     question: "In the gold-foil experiment by Rutherford almost all alpha particles flew straight through the foil, but a very small number bounced back. What is the correct conclusion?",
     options: [
-      "The mass and the positive charge of an atom sit in a tiny nucleus, and the rest of the atom is almost empty space.",
-      "The atom is a uniform positive sphere with the electrons stuck inside it.",
-      "The electrons of the shell pushed the alpha particles back.",
-      "Gold atoms are radioactive and fired the particles back."
+      "Almost all of the atom is empty space around a tiny, dense nucleus.",
+      "The atom is a uniform positive sphere with the electrons inside it.",
+      "The electrons of the shell are heavy enough to push the particles back.",
+      "Gold atoms are radioactive and fire the incoming particles back out."
     ],
     correct: 0,
     why: [
-      "Correct. Straight through means mostly empty space. A few very strong deflections mean a tiny, dense, positively charged nucleus that repels the positive alpha particles.",
+      "Correct. Straight through means the atom is mostly empty space. The few very strong deflections mean there is a tiny, dense, positively charged nucleus that repels the positive alpha particles.",
       "That was the older plum-pudding picture. If the positive charge were spread out evenly, every alpha particle would be deflected slightly and none would come back.",
       "Electrons are roughly 7000 times lighter than an alpha particle, so they cannot bounce one back, just as a ping-pong ball cannot stop a bowling ball. They are also negative and would attract, not repel.",
       "Gold is not radioactive, and the foil is passive here. The source of the alpha particles stands outside the foil."
@@ -100,9 +100,9 @@ const QUIZ_QUESTIONS = [
     topic: "C2",
     question: "Sodium and potassium stand in the same group of the periodic table and both react violently with water. Which statement explains this similarity best?",
     options: [
-      "They contain the same number of protons.",
-      "They have the same relative atomic mass.",
-      "They have the same number of electrons in their outermost shell.",
+      "They contain the same number of protons in the nucleus.",
+      "Their atoms have practically the same relative atomic mass.",
+      "They have the same number of electrons in the outer shell.",
       "They stand in the same period of the periodic table."
     ],
     correct: 2,
@@ -123,10 +123,10 @@ const QUIZ_QUESTIONS = [
     topic: "C3",
     question: "Solid sodium chloride does not conduct electricity, but molten sodium chloride conducts very well. Why?",
     options: [
-      "In the solid the ions are locked in the crystal lattice, and in the melt they can move freely.",
-      "Melting converts the ions into free electrons.",
-      "The solid contains no charged particles, and melting is what creates the ions.",
-      "The hot salt reacts with the oxygen of the air, and the products conduct."
+      "The ions sit locked in the lattice and can only move once it melts.",
+      "Melting converts the ions into free electrons as in a metal.",
+      "The solid holds no charged particles; melting first creates them.",
+      "The hot salt reacts with the air and the products conduct."
     ],
     correct: 0,
     why: [
@@ -144,10 +144,10 @@ const QUIZ_QUESTIONS = [
     topic: "C3",
     question: "Nitrogen forms the molecule NH&#8323;, but never a neutral NH&#8322; or NH&#8324; molecule. Which reasoning explains this?",
     options: [
-      "Nitrogen has 3 protons, so it can bind 3 hydrogen atoms.",
-      "A nitrogen atom has 5 valence electrons and needs 3 shared electrons to reach an octet, so it forms 3 bonds and keeps one lone pair.",
-      "A hydrogen atom can form two bonds, so only three hydrogen atoms fit around the nitrogen.",
-      "NH&#8323; is simply the lightest possible combination of nitrogen and hydrogen."
+      "Nitrogen has three protons, so it binds three hydrogen atoms.",
+      "Nitrogen has five valence electrons and needs three more for an octet.",
+      "A hydrogen atom forms two bonds, so only three of them fit around it.",
+      "NH&#8323; is the lightest combination the two elements can form."
     ],
     correct: 1,
     why: [
@@ -232,9 +232,9 @@ const QUIZ_QUESTIONS = [
     topic: "C5",
     question: "A catalyst is added to a chemical reaction. Which statement is correct?",
     options: [
-      "It is used up during the reaction and has to be replaced regularly.",
-      "It makes the reaction release more energy.",
-      "It lowers the activation energy, so more collisions are successful, and it is unchanged at the end.",
+      "It is used up in the reaction and has to be replaced regularly.",
+      "It increases the amount of energy that the reaction releases.",
+      "It lowers the activation energy and is unchanged at the end.",
       "It turns an endothermic reaction into an exothermic one."
     ],
     correct: 2,
@@ -255,10 +255,10 @@ const QUIZ_QUESTIONS = [
     topic: "C6",
     question: "Chloromethane (CH&#8323;Cl, M&nbsp;=&nbsp;50.5&nbsp;g/mol) boils at &minus;23.8&nbsp;&deg;C, methanol (CH&#8324;O, M&nbsp;=&nbsp;32.0&nbsp;g/mol) boils at +65&nbsp;&deg;C. Why does the <em>lighter</em> molecule boil at the much higher temperature?",
     options: [
-      "Methanol molecules form hydrogen bonds through their O&ndash;H group, and these are far stronger than the dipole&ndash;dipole forces between chloromethane molecules.",
-      "The C&ndash;O bond inside methanol is stronger and has to be broken during boiling.",
-      "Chloromethane is a non-polar molecule, so only weak van der Waals forces act between its molecules.",
-      "Methanol molecules are heavier and are therefore harder to lift into the gas phase."
+      "The O&ndash;H group of methanol lets hydrogen bonds form between molecules.",
+      "The C&ndash;O bond inside methanol has to be broken during boiling.",
+      "Chloromethane is non-polar and has only weak van der Waals forces.",
+      "Methanol molecules are heavier and harder to lift into the gas phase."
     ],
     correct: 0,
     why: [
@@ -276,10 +276,10 @@ const QUIZ_QUESTIONS = [
     topic: "C6",
     question: "Chlorine (Cl&#8322;) is a completely non-polar molecule, yet it becomes a liquid at &minus;34.6&nbsp;&deg;C. Which force holds the molecules together?",
     options: [
-      "Hydrogen bonds",
-      "Ionic attraction between Cl&#8314; and Cl&#8315;",
-      "Permanent dipole&ndash;dipole interaction",
-      "Van der Waals forces caused by a short-lived, uneven distribution of the electrons"
+      "Hydrogen bonds between neighbouring molecules",
+      "Ionic attraction between oppositely charged ions",
+      "Permanent dipole&ndash;dipole interaction of the molecules",
+      "Van der Waals forces from short-lived charge shifts"
     ],
     correct: 3,
     why: [
@@ -364,10 +364,10 @@ const QUIZ_QUESTIONS = [
     topic: "C8",
     question: "A zinc strip is dipped into copper(II) sulfate solution, and at the same time a copper strip is dipped into zinc sulfate solution. What do you observe?",
     options: [
-      "Both strips become coated with the other metal.",
-      "The copper strip becomes coated with zinc, and nothing happens to the zinc strip.",
-      "The zinc strip becomes coated with copper and the blue colour fades, and nothing happens to the copper strip.",
-      "Nothing happens in either beaker."
+      "Both strips slowly become coated with the other metal.",
+      "The copper strip is coated with zinc, the zinc strip stays clean.",
+      "The zinc strip is coated with copper and the blue colour fades.",
+      "Nothing visible happens in either of the two beakers."
     ],
     correct: 2,
     why: [
@@ -387,17 +387,17 @@ const QUIZ_QUESTIONS = [
     topic: "C9",
     question: "Butane and 2-methylpropane both have the molecular formula C&#8324;H&#8321;&#8320;, but butane boils at &minus;0.5&nbsp;&deg;C and 2-methylpropane at &minus;11.7&nbsp;&deg;C. Which explanation is correct?",
     options: [
-      "2-methylpropane is lighter and therefore evaporates more easily.",
-      "Butane can form hydrogen bonds and 2-methylpropane cannot.",
-      "2-methylpropane contains a double bond and is therefore more volatile.",
-      "They are constitutional isomers: the branched molecule is more compact, so neighbouring molecules touch over a smaller area and the van der Waals forces are weaker."
+      "2-methylpropane is clearly the lighter of the two molecules.",
+      "Only butane can form hydrogen bonds between its molecules.",
+      "2-methylpropane contains a double bond and is more volatile.",
+      "The branched molecule has less contact area with neighbours."
     ],
     correct: 3,
     why: [
       "The same molecular formula means the same molar mass, 58 g/mol for both, so the difference cannot come from the mass.",
       "Hydrogen bonds need a hydrogen atom on oxygen, nitrogen or fluorine. Both molecules contain only carbon and hydrogen, so neither of them forms hydrogen bonds.",
       "C&#8324;H&#8321;&#8320; is saturated. With 4 carbon atoms and a double bond the formula would be C&#8324;H&#8328;, so both molecules contain single bonds only.",
-      "Correct. Same formula but different structure means isomers. The long, straight butane molecules lie against each other like pencils and touch over a large area, while the branched, ball-shaped 2-methylpropane has less contact area, weaker van der Waals forces and therefore a lower boiling point."
+      "Correct. Same formula but different structure means the two are constitutional isomers. The long, straight butane molecules lie against each other like pencils and touch over a large area, while the branched, ball-shaped 2-methylpropane has less contact area, so weaker van der Waals forces and a lower boiling point."
     ],
     takeaway: "More branching means less contact area, weaker van der Waals forces and a lower boiling temperature.",
     video: "videos/q17.mp4",
@@ -408,14 +408,14 @@ const QUIZ_QUESTIONS = [
     topic: "C9",
     question: "In the human body ethanol (C&#8322;H&#8325;OH) is broken down in two oxidation steps. Which sequence is correct?",
     options: [
-      "ethanol &rarr; ethanal (acetaldehyde) &rarr; ethanoic acid (acetic acid)",
+      "ethanol &rarr; ethanal &rarr; ethanoic acid",
       "ethanol &rarr; ethanoic acid &rarr; ethanal",
       "ethanol &rarr; ethene &rarr; ethane",
       "ethanol &rarr; methanol &rarr; methanal"
     ],
     correct: 0,
     why: [
-      "Correct. A primary alcohol is oxidised first to an aldehyde and then to a carboxylic acid. The intermediate ethanal is far more toxic than ethanol itself and is largely responsible for the symptoms of a hangover.",
+      "Correct. A primary alcohol is oxidised first to an aldehyde (here ethanal, also called acetaldehyde) and then to a carboxylic acid (ethanoic acid, acetic acid). Ethanal is far more toxic than ethanol itself and is largely responsible for the symptoms of a hangover.",
       "The order is reversed. The carboxylic acid is the <em>end</em> of the chain, the more strongly oxidised stage, and it is not turned back into an aldehyde.",
       "Turning ethanol into ethene would be an elimination of water rather than an oxidation, and no oxygen would be involved at all.",
       "The carbon skeleton stays intact during this breakdown. Oxidation changes the functional group, it does not cut a C&ndash;C bond and shorten the chain."

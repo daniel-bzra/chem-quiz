@@ -10,7 +10,8 @@
     pool: [],      // the questions of the current run
     index: 0,      // which one we are on
     answered: [],  // { id, topic, chosen, correct:boolean }
-    locked: false  // true while the feedback panel is open
+    locked: false, // true while the feedback panel is open
+    order: []      // display order of the options for the current question
   };
 
   const LETTERS = ["A", "B", "C", "D", "E", "F"];
@@ -96,17 +97,22 @@
     /* question */
     $("qText").innerHTML = q.question;
 
-    /* options */
+    /* options - shuffled every time, so neither the position nor the
+       length of an answer can be used as a shortcut */
+    state.order = shuffle(q.options.map((_, i) => i));
+
     const list = $("options");
     list.innerHTML = "";
-    q.options.forEach((text, i) => {
+    state.order.forEach((source, slot) => {
       const li = document.createElement("li");
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "opt";
-      btn.dataset.i = i;
-      btn.innerHTML = '<span class="opt-key">' + LETTERS[i] + "</span><span>" + text + "</span>";
-      btn.addEventListener("click", () => answer(i));
+      btn.dataset.i = source;   // index in the question data
+      btn.dataset.slot = slot;  // position on screen
+      btn.innerHTML =
+        '<span class="opt-key">' + LETTERS[slot] + "</span><span>" + q.options[source] + "</span>";
+      btn.addEventListener("click", () => answer(source));
       li.appendChild(btn);
       list.appendChild(li);
     });
@@ -147,8 +153,10 @@
       fbCorrect.hidden = true;
     } else {
       fbCorrect.hidden = false;
+      /* the letter depends on where the correct option landed after shuffling */
       fbCorrect.innerHTML =
-        "<strong>" + LETTERS[q.correct] + " is right:</strong> " + q.why[q.correct];
+        "<strong>" + LETTERS[state.order.indexOf(q.correct)] + " is right:</strong> " +
+        q.why[q.correct];
     }
 
     $("fbTakeaway").innerHTML = "<strong>Remember:</strong> " + q.takeaway;
@@ -352,9 +360,61 @@
     start(QUIZ_QUESTIONS.filter((q) => ids.indexOf(q.id) !== -1));
   }
 
+  /* ============================================ PERIODIC TABLE === */
+  function buildPeriodicTable() {
+    const grid = $("pseGrid");
+    grid.innerHTML = "";
+
+    /* the two cells that stand in for the f-block rows */
+    [[6, 3, "57&ndash;71"], [7, 3, "89&ndash;103"]].forEach(([row, col, label]) => {
+      const ph = document.createElement("div");
+      ph.className = "el el-placeholder";
+      ph.style.gridRow = row;
+      ph.style.gridColumn = col;
+      ph.innerHTML = '<span class="el-sym">' + label + "</span>";
+      grid.appendChild(ph);
+    });
+
+    ELEMENTS.forEach(([z, sym, name, mass, cat]) => {
+      const pos = elementPosition(z);
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "el";
+      btn.style.gridRow = pos.row;
+      btn.style.gridColumn = pos.col;
+      btn.style.setProperty("--el", ELEMENT_CATEGORIES[cat].colour);
+      btn.innerHTML =
+        '<span class="el-z">' + z + "</span>" +
+        '<span class="el-sym">' + sym + "</span>" +
+        '<span class="el-mass">' + mass + "</span>";
+      btn.addEventListener("click", () => showElement(z, sym, name, mass, cat));
+      btn.addEventListener("mouseenter", () => showElement(z, sym, name, mass, cat));
+      grid.appendChild(btn);
+    });
+
+    const legend = $("pseLegend");
+    legend.innerHTML = "";
+    Object.keys(ELEMENT_CATEGORIES).forEach((key) => {
+      const c = ELEMENT_CATEGORIES[key];
+      const item = document.createElement("span");
+      item.className = "lg";
+      item.innerHTML = '<i style="background:' + c.colour + '"></i>' + c.label;
+      legend.appendChild(item);
+    });
+  }
+
+  function showElement(z, sym, name, mass, cat) {
+    $("prZ").textContent = z;
+    $("prSym").textContent = sym;
+    $("prSym").style.color = ELEMENT_CATEGORIES[cat].colour;
+    $("prName").textContent = name;
+    $("prMass").innerHTML = "M = " + mass + " g/mol";
+  }
+
   /* ==================================================== WIRING === */
   function init() {
     buildTopicGrid();
+    buildPeriodicTable();
 
     $("btnStartAll").addEventListener("click", () => start(QUIZ_QUESTIONS));
     $("btnNext").addEventListener("click", next);
@@ -367,13 +427,27 @@
     $("btnSources2").addEventListener("click", open);
     $("btnCloseSources").addEventListener("click", () => dlg.close());
 
+    const pse = $("pseDialog");
+    const openPse = () => (pse.showModal ? pse.showModal() : (pse.open = true));
+    $("btnPse").addEventListener("click", openPse);
+    $("btnClosePse").addEventListener("click", () => pse.close());
+
+    /* P opens the periodic table from anywhere */
+    document.addEventListener("keydown", (e) => {
+      if (e.key !== "p" && e.key !== "P") return;
+      if (/^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
+      e.preventDefault();
+      pse.open ? pse.close() : openPse();
+    });
+
     /* keyboard: 1-4 to answer, Enter/Space to continue */
     document.addEventListener("keydown", (e) => {
       if (!screens.quiz.classList.contains("is-active")) return;
+      if (pse.open || dlg.open) return;
       if (e.target.tagName === "BUTTON" && e.key === " ") return;
 
       if (!state.locked && /^[1-4]$/.test(e.key)) {
-        const btn = document.querySelector('.opt[data-i="' + (Number(e.key) - 1) + '"]');
+        const btn = document.querySelector('.opt[data-slot="' + (Number(e.key) - 1) + '"]');
         if (btn) { e.preventDefault(); btn.click(); }
       } else if (state.locked && (e.key === "Enter" || e.key === " ")) {
         e.preventDefault();

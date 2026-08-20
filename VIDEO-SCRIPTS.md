@@ -14,10 +14,14 @@ Structure that works for every video (and scores well on
 
 | Seconds | What you say |
 |---|---|
-| 0–5 | Name the trap: *"If you picked X, here is what went wrong."* |
+| 0–5 | Name the trap by its **content**: *"If you thought boiling breaks the bonds inside the molecule…"* |
 | 5–25 | The reasoning / the calculation, shown on paper or on screen |
 | 25–35 | The correct answer and **why** it is correct |
 | 35–40 | One sentence to remember |
+
+> **Never say "option B" or "the second answer".** The quiz shuffles the four
+> options on every run, so the letters are different for every user. Always
+> refer to what an answer *says*, not where it sits.
 
 Speak English (B2). Show the working — a phone camera pointed at a
 sheet of paper is completely fine and often clearer than slides.
