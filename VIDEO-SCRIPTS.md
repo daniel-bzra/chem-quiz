@@ -24,14 +24,22 @@ Word-for-word scripts for the 18 explanation videos, one per question.
 > options on every run, so the letters differ for every user. Always refer to
 > what an answer *says*.
 
-## Suggested split
+## Who films what
 
-| | Videos | Chapters |
-|---|---|---|
-| Person A | q01–q08 | C1 Substances · C2 Structure of matter · C3 Bonding · C4 Amount of substance |
-| Person B | q09–q18 | C5 Reactions · C6 Intermolecular forces · C7 Acids & bases · C8 Redox · C9 Organic |
+Six videos each. Split by chapter so nobody has to jump between topics,
+and balanced on the two things that cost time: the videos with a
+calculation to write out, and the ones that need a sketch.
 
-Swap two if you want it exactly even — the brief marks visible teamwork.
+| | Chapters | Videos | Screen time | Calculations | Sketches |
+|---|---|---|---|---|---|
+| **Person A** | C1 Substances & properties · C4 Amount of substance · C9 Organic chemistry | `q01` `q02` `q07` `q08` `q17` `q18` | 3:57 min | 2 | 2 |
+| **Person B** | C2 Structure of matter · C3 Chemical bonding · C7 Acids & bases | `q03` `q04` `q05` `q06` `q13` `q14` | 3:58 min | 2 | 3 |
+| **Person C** | C5 Chemical reactions · C6 Intermolecular forces · C8 Redox reactions | `q09` `q10` `q11` `q12` `q15` `q16` | 4:02 min | 2 | 2 |
+
+Write your real names in instead of A, B and C — and say your name at the
+start of each video. On overhead shots only your hands are visible, so that
+is the only thing showing who made which one. The brief deducts for teamwork
+that is not recognisable.
 
 ---
 
@@ -663,7 +671,7 @@ ethanal = the hangover
 - [ ] 30–45 s each, 11.9 min in total
 - [ ] Quiet room, phone about 1 m away or a wired headset mic — audio matters more than picture
 - [ ] Export as MP4 (H.264), 720p, ideally under 10 MB per file
-- [ ] Both of you visible in roughly half the videos each
+- [ ] Six videos each, and everyone says their own name at the start of theirs
 - [ ] Add any music, images or footage from other sources to the Sources dialog in `index.html`
 
 Do **one** video end to end first — record, export, drop into `videos/`, push,

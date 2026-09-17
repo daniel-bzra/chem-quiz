@@ -1,5 +1,5 @@
 const http=require('http'),fs=require('fs'),path=require('path');
-const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.md':'text/plain; charset=utf-8','.mp4':'video/mp4'};
+const types={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.md':'text/plain; charset=utf-8','.pdf':'application/pdf','.mp4':'video/mp4'};
 http.createServer((req,res)=>{
   let p=decodeURIComponent(req.url.split('?')[0]);
   if(p==='/')p='/index.html';

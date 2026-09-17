@@ -1,0 +1,30 @@
+# Which raw recording belongs to which question.
+# Columns are separated by TABS (the file names contain spaces).
+#
+#   raw file in videos/raw/	question	name	rotate (cw / ccw / 180 / -)	cuts (optional)
+#
+# rotate: how to turn the picture so the writing reads upright.
+# cuts: stretches to remove, in seconds, e.g. 12.35-16.20 or 3.1-4.0,20.5-21.2
+# A line starting with # is skipped.
+
+# ---- Giacomo -------------------------------------------------------
+WhatsApp Video 2026-09-16 at 10.37.46.mp4	q03	Giacomo	180
+WhatsApp Video 2026-09-16 at 10.37.45.mp4	q04	Giacomo	ccw
+WhatsApp Video 2026-09-16 at 10.37.44.mp4	q05	Giacomo	cw
+WhatsApp Video 2026-09-16 at 10.37.43.mp4	q06	Giacomo	cw
+WhatsApp Video 2026-09-16 at 10.37.42.mp4	q13	Giacomo	cw
+WhatsApp Video 2026-09-17 at 08.00.34.mp4	q14	Giacomo	cw
+
+# ---- Daniel --------------------------------------------------------
+WhatsApp Video 2026-09-16 at 11.57.48.mp4	q09	Daniel	ccw
+WhatsApp Video 2026-09-16 at 11.57.47.mp4	q10	Daniel	ccw
+WhatsApp Video 2026-09-16 at 11.57.46.mp4	q11	Daniel	-	34.40-35.30
+WhatsApp Video 2026-09-16 at 11.57.45.mp4	q12	Daniel	ccw	12.35-16.20
+WhatsApp Video 2026-09-16 at 11.57.44.mp4	q15	Daniel	ccw
+WhatsApp Video 2026-09-16 at 11.55.18.mp4	q16	Daniel	ccw
+# q16 was sent twice. This is the other take (44.7 s instead of 39.1 s).
+# To use it instead, put a # in front of the line above and remove it here.
+#WhatsApp Video 2026-09-16 at 11.55.40.mp4	q16	Daniel	ccw
+
+# ---- Flavio --------------------------------------------------------
+# q01 q02 q07 q08 q17 q18 - not recorded yet
