@@ -11,7 +11,9 @@
     index: 0,      // which one we are on
     answered: [],  // { id, topic, chosen, correct:boolean }
     locked: false, // true while the feedback panel is open
-    order: []      // display order of the options for the current question
+    order: [],     // display order of the options for the current question
+    gate: 0,       // bumped per question, so a removed video cannot unlock the next one
+    nextLabel: ""  // "Continue" or "See my result"
   };
 
   const LETTERS = ["A", "B", "C", "D", "E", "F"];
@@ -85,6 +87,7 @@
     const q = state.pool[state.index];
     const t = topicOf(q.topic);
     state.locked = false;
+    state.gate++;
 
     /* header + progress */
     $("qTopic").textContent = q.topic + " · " + t.name.replace(/&amp;/g, "&");
@@ -163,11 +166,11 @@
     $("fbSource").innerHTML = "Source: " + q.source;
     $("hint").hidden = true;
 
-    /* video only when the answer was wrong */
-    if (!right) mountVideo(q);
+    state.nextLabel = state.index === state.pool.length - 1 ? "See my result →" : "Continue →";
+    unlockContinue(false);
 
-    $("btnNext").textContent =
-      state.index === state.pool.length - 1 ? "See my result →" : "Continue →";
+    /* video only when the answer was wrong - and then Continue waits for it */
+    if (!right) mountVideo(q);
 
     $("feedback").hidden = false;
     $("hudScore").textContent = state.answered.filter((a) => a.correct).length + " correct";
@@ -193,19 +196,58 @@
       frame.appendChild(iframe);
     } else {
       const video = document.createElement("video");
+      const gate = state.gate;
       video.src = src;
       video.controls = true;
       video.playsInline = true;
       video.preload = "metadata";
-      /* if the file is not there yet, show a friendly placeholder instead */
+
+      /* Continue stays locked until the video has really been watched.
+         Counted from the ranges that were actually played, so skipping to
+         the end does not count. */
+      lockContinue("Watch the video to continue");
+      const check = () => {
+        if (gate !== state.gate) return;
+        const d = video.duration;
+        if (!isFinite(d) || d <= 0) return;
+        let seen = 0;
+        for (let i = 0; i < video.played.length; i++) seen += video.played.end(i) - video.played.start(i);
+        if (d - seen <= 0.75) {
+          unlockContinue(true);
+        } else {
+          $("btnNext").textContent = "Watch the video to continue · " + Math.ceil(d - seen) + " s left";
+        }
+      };
+      video.addEventListener("loadedmetadata", check);
+      video.addEventListener("timeupdate", check);
+      video.addEventListener("ended", check);
+
+      /* if the file is not there yet, show a friendly placeholder - and do
+         not trap the user behind a video that cannot play */
       video.addEventListener("error", () => {
+        if (gate !== state.gate) return;
         frame.innerHTML = "";
         frame.appendChild(missingBox(q, src));
+        unlockContinue(false);
       });
       frame.appendChild(video);
     }
 
     $("videoBlock").hidden = false;
+  }
+
+  function lockContinue(text) {
+    const btn = $("btnNext");
+    btn.disabled = true;
+    btn.textContent = text;
+  }
+
+  function unlockContinue(focus) {
+    const btn = $("btnNext");
+    const was = btn.disabled;
+    btn.disabled = false;
+    btn.textContent = state.nextLabel;
+    if (focus && was) btn.focus({ preventScroll: true });
   }
 
   function missingBox(q, src) {
@@ -445,11 +487,12 @@
       if (!screens.quiz.classList.contains("is-active")) return;
       if (pse.open || dlg.open) return;
       if (e.target.tagName === "BUTTON" && e.key === " ") return;
+      if (e.target.tagName === "VIDEO") return;   // space/arrows belong to the player
 
       if (!state.locked && /^[1-4]$/.test(e.key)) {
         const btn = document.querySelector('.opt[data-slot="' + (Number(e.key) - 1) + '"]');
         if (btn) { e.preventDefault(); btn.click(); }
-      } else if (state.locked && (e.key === "Enter" || e.key === " ")) {
+      } else if (state.locked && !$("btnNext").disabled && (e.key === "Enter" || e.key === " ")) {
         e.preventDefault();
         next();
       }

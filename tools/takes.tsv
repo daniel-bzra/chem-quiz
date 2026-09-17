@@ -1,11 +1,15 @@
 # Which raw recording belongs to which question.
 # Columns are separated by TABS (the file names contain spaces).
 #
-#   raw file in videos/raw/	question	name	rotate (cw / ccw / 180 / -)	cuts (optional)
+#   raw file in videos/raw/	question	name	rotate	cuts	ends at	speed
 #
-# rotate: how to turn the picture so the writing reads upright.
-# cuts: stretches to remove, in seconds, e.g. 12.35-16.20 or 3.1-4.0,20.5-21.2
-# A line starting with # is skipped.
+# rotate:  cw / ccw / 180 / -   turn the picture so the writing reads upright
+# cuts:    stretches to remove, in seconds, e.g. 12.35-16.20 or 3.1-4.0,20.5-21.2
+# ends at: stop the clip at this second (drops everything after it)
+# speed:   leave as - for the common speed set in polish-all.sh (1.06),
+#          or give a number for this clip only
+# Columns at the end of a line can be left out. A line starting with # is skipped.
+# The laptop crop for q10, q15, q16 lives in tools/crops/.
 
 # ---- Giacomo -------------------------------------------------------
 WhatsApp Video 2026-09-16 at 10.37.46.mp4	q03	Giacomo	180
@@ -18,7 +22,9 @@ WhatsApp Video 2026-09-17 at 08.00.34.mp4	q14	Giacomo	cw
 # ---- Daniel --------------------------------------------------------
 WhatsApp Video 2026-09-16 at 11.57.48.mp4	q09	Daniel	ccw
 WhatsApp Video 2026-09-16 at 11.57.47.mp4	q10	Daniel	ccw
+# q11: "Those costs," was said twice - the first one is cut
 WhatsApp Video 2026-09-16 at 11.57.46.mp4	q11	Daniel	-	34.40-35.30
+# q12: the question was asked first without "minus" - that attempt is cut
 WhatsApp Video 2026-09-16 at 11.57.45.mp4	q12	Daniel	ccw	12.35-16.20
 WhatsApp Video 2026-09-16 at 11.57.44.mp4	q15	Daniel	ccw
 WhatsApp Video 2026-09-16 at 11.55.18.mp4	q16	Daniel	ccw
@@ -27,4 +33,17 @@ WhatsApp Video 2026-09-16 at 11.55.18.mp4	q16	Daniel	ccw
 #WhatsApp Video 2026-09-16 at 11.55.40.mp4	q16	Daniel	ccw
 
 # ---- Flavio --------------------------------------------------------
-# q01 q02 q07 q08 q17 q18 - not recorded yet
+# Flavio read the full scripts, so each clip ends before the paragraph that
+# was meant to be dropped (same cuts as in the shooting script).
+WhatsApp Video 2026-09-17 at 08.49.27.mp4	q01	Flavio	cw	-	41.3
+# q02: ends before "A fixed boiling temperature is the fingerprint..."
+WhatsApp Video 2026-09-17 at 08.49.26.mp4	q02	Flavio	cw	-	42.3
+# q07: "Check the units ... Good." removed, and four long writing pauses shortened
+WhatsApp Video 2026-09-17 at 08.49.25.mp4	q07	Flavio	cw	11.95-12.55,16.3-17.2,20.9-28.1,37.85-38.45,46.65-47.35	54.9
+# q08: ends before "So let's check..." - that sentence said 0.2 where 0.1 is right.
+# Normal speed, otherwise the clip would drop below 30 s.
+WhatsApp Video 2026-09-17 at 08.49.24.mp4	q08	Flavio	cw	-	29.3	1
+# q17: ends before "Weaker attraction means a lower boiling point..."
+WhatsApp Video 2026-09-17 at 08.47.52.mp4	q17	Flavio	cw	-	41.3
+# q18: ends before "And ethanal is the important one..."
+WhatsApp Video 2026-09-17 at 08.47.29.mp4	q18	Flavio	cw	-	42.5

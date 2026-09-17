@@ -158,6 +158,12 @@ main{ max-width:840px; margin:0 auto; padding:0 clamp(1rem,4vw,2rem) 4rem; }
   color:#08101f; box-shadow:0 10px 30px -12px rgba(94,234,212,.65);
 }
 .btn-primary:hover{ transform:translateY(-2px); filter:brightness(1.07); }
+.btn-primary:disabled,
+.btn-primary:disabled:hover{
+  cursor:not-allowed; transform:none; box-shadow:none;
+  background:var(--card-2); color:var(--text-dim); border-color:var(--line);
+  filter:none; font-variant-numeric:tabular-nums;
+}
 .btn-secondary{ background:var(--card-2); color:var(--text); border-color:var(--line); }
 .btn-secondary:hover{ background:var(--card); border-color:var(--accent-2); }
 .btn-ghost{
