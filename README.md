@@ -129,6 +129,16 @@ node server.js   # then open http://localhost:4321
 
 ---
 
+## Team
+
+Flavio (C1, C4, C9) · Giacomo (C2, C3, C7) · Daniel (C5, C6, C8) — each of us
+recorded the six explanation videos for our chapters.
+
+The video scripts, the quiz code and the video editing were made with the help
+of an AI assistant (Claude by Anthropic). We reviewed every question as a team,
+recorded all videos ourselves and had the quiz tried out by a classmate, whose
+feedback led to the built-in periodic table and to fairer answer options.
+
 ## Sources
 
 Listed in the app under **Sources**. Content is based on the BWZ chemistry
